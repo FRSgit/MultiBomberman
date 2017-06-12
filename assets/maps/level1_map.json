@@ -155,20 +155,6 @@
                  "y":49
                 }, 
                 {
-                 "height":16,
-                 "name":"target1",
-                 "properties":
-                    {
-                     "group":"targets",
-                     "texture":"target_image"
-                    },
-                 "type":"target",
-                 "visible":true,
-                 "width":18,
-                 "x":16,
-                 "y":144
-                }, 
-                {
                  "gid":66,
                  "height":0,
                  "name":"player2",
