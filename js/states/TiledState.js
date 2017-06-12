@@ -87,6 +87,8 @@ Bomberman.TiledState.prototype.create = function () {
         }
     }
     
+    this.game.user_input = this.game.plugins.add(Bomberman.UserInput, this, JSON.parse(this.game.cache.getText("user_input")));
+    
     this.init_hud();
 };
 
@@ -105,22 +107,38 @@ Bomberman.TiledState.prototype.create_object = function (object) {
 
 Bomberman.TiledState.prototype.init_hud = function () {
     "use strict";
-    var lives_position, lives_properties, lives;
+    var player1_lives_position, player1_lives_properties, player1_lives, player2_lives_position, player2_lives_properties, player2_lives;
     
-    // create the lives prefab
-    lives_position = new Phaser.Point(0.9 * this.game.world.width, 0.07 * this.game.world.height);
-    lives_properties = {group: "hud", texture: "heart_image", number_of_lives: 3};
-    lives = new Bomberman.Lives(this, "lives", lives_position, lives_properties);
+    // create the lives prefab for player1
+    player1_lives_position = new Phaser.Point(0.1 * this.game.world.width, 0.07 * this.game.world.height);
+    player1_lives_properties = {group: "hud", texture: "heart_image", number_of_lives: 3, player: "player1"};
+    player1_lives = new Bomberman.Lives(this, "lives", player1_lives_position, player1_lives_properties);
+    
+    // create the lives prefab for player2
+    player2_lives_position = new Phaser.Point(0.9 * this.game.world.width, 0.07 * this.game.world.height);
+    player2_lives_properties = {group: "hud", texture: "heart_image", number_of_lives: 3, player: "player2"};
+    player2_lives = new Bomberman.Lives(this, "lives", player2_lives_position, player2_lives_properties);
 };
 
-Bomberman.TiledState.prototype.game_over = function () {
+Bomberman.TiledState.prototype.show_game_over = function () {
     "use strict";
-    this.game.state.restart(true, false, this.level_data);
+    var game_over_panel, game_over_position, game_over_bitmap, panel_text_style;
+    // create a bitmap do show the game over panel
+    game_over_position = new Phaser.Point(0, this.game.world.height);
+    game_over_bitmap = this.add.bitmapData(this.game.world.width, this.game.world.height);
+    game_over_bitmap.ctx.fillStyle = "#000";
+    game_over_bitmap.ctx.fillRect(0, 0, this.game.world.width, this.game.world.height);
+    panel_text_style = {game_over: {font: "32px Arial", fill: "#FFF"},
+                       winner: {font: "20px Arial", fill: "#FFF"}};
+    // create the game over panel
+    game_over_panel = this.create_game_over_panel(game_over_position, game_over_bitmap, panel_text_style);
+    this.groups.hud.add(game_over_panel);
 };
 
-Bomberman.TiledState.prototype.next_level = function () {
+Bomberman.TiledState.prototype.create_game_over_panel = function (position, texture, text_style) {
     "use strict";
-    localStorage.number_of_lives = this.prefabs.player.number_of_lives;
-    localStorage.number_of_bombs = this.prefabs.player.number_of_bombs;
-    this.game.state.start("BootState", true, false, this.level_data.next_level, "TiledState");
+    var game_over_panel_properties, game_over_panel;
+    game_over_panel_properties = {texture: texture, group: "hud", text_style: text_style, animation_time: 500};
+    game_over_panel = new Bomberman.GameOverPanel(this, "game_over_panel", position, game_over_panel_properties);
+    return game_over_panel;
 };

@@ -34,6 +34,10 @@ Bomberman.LoadingState.prototype.preload = function () {
             }
         }
     }
+    // load user input file
+    if (this.level_data.user_input) {
+        this.load.text("user_input", this.level_data.user_input);
+    }
 };
 
 Bomberman.LoadingState.prototype.create = function () {

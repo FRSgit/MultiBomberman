@@ -697,7 +697,7 @@
   </data>
  </layer>
  <objectgroup name="objects" width="15" height="15">
-  <object name="player" type="player" gid="66" x="16" y="32">
+  <object name="player1" type="player" gid="66" x="16" y="32">
    <properties>
     <property name="frame" value="65"/>
     <property name="group" value="players"/>
@@ -757,6 +757,16 @@
    <properties>
     <property name="group" value="targets"/>
     <property name="texture" value="target_image"/>
+   </properties>
+  </object>
+  <object name="player2" type="player" gid="66" x="208" y="224">
+   <properties>
+    <property name="frame" value="65"/>
+    <property name="group" value="players"/>
+    <property name="number_of_bombs" value="1"/>
+    <property name="number_of_lives" value="3"/>
+    <property name="texture" value="player_spritesheet"/>
+    <property name="walking_speed" value="50"/>
    </properties>
   </object>
  </objectgroup>

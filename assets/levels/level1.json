@@ -27,6 +27,7 @@
         "key": "level_tilemap",
         "tilesets": ["map_tiles"]
     },
+    "user_input": "assets/levels/user_input.json",
     "next_level": "assets/levels/level2.json",
     "first_level": true
 }

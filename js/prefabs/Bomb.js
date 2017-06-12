@@ -14,6 +14,8 @@ Bomberman.Bomb = function (game_state, name, position, properties) {
     this.exploding_animation = this.animations.add("exploding", [0, 2, 4], 1, false);
     this.exploding_animation.onComplete.add(this.explode, this);
     this.animations.play("exploding");
+    
+    this.owner = properties.owner;
 };
 
 Bomberman.Bomb.prototype = Object.create(Bomberman.Prefab.prototype);
@@ -42,7 +44,7 @@ Bomberman.Bomb.prototype.explode = function () {
     this.create_explosions(-1, -this.bomb_radius, -1, "y");
     this.create_explosions(1, this.bomb_radius, +1, "y");
     
-    this.game_state.prefabs.player.current_bomb_index -= 1;
+    this.owner.current_bomb_index -= 1;
 };
 
 Bomberman.Bomb.prototype.create_explosions = function (initial_index, final_index, step, axis) {
