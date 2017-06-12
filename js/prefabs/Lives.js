@@ -13,7 +13,7 @@ Bomberman.Lives = function (game_state, name, position, properties) {
     this.scale.setTo(0.6);
     
     // create a text prefab to show the number of lives
-    lives_text_position = new Phaser.Point(this.position.x - 2, this.position.y + 5);
+    lives_text_position = new Phaser.Point(this.position.x, this.position.y + 3);
     lives_text_style = {font: "10px Arial", fill: "#fff"};
     lives_text_properties = {group: "hud", text: this.number_of_lives, style: lives_text_style};
     this.lives_text = new Bomberman.TextPrefab(this.game_state, "lives_text", lives_text_position, lives_text_properties);

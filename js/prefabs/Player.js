@@ -20,9 +20,8 @@ Bomberman.Player = function (game_state, name, position, properties) {
     this.body.setSize(14, 12, 0, 4);
     
     this.initial_position = new Phaser.Point(this.x, this.y);
-    console.log(name, localStorage, localStorage[name]);
+
     var _localStorage = localStorage[name] && JSON.parse(localStorage[name]) || {};
-    console.log(name, localStorage, localStorage[name]);
     this.number_of_lives = _localStorage.number_of_lives || +properties.number_of_lives;
     this.number_of_bombs = _localStorage.number_of_bombs || +properties.number_of_bombs;
     this.current_bomb_index = 0;
@@ -133,6 +132,10 @@ Bomberman.Player.prototype.die = function () {
         this.game_state.show_game_over();
     } else {
         // if there are remaining lives, restart the player position
-        this.reset(this.initial_position.x, this.initial_position.y);
+        this.reset(-100000, -100000);
+        setTimeout(
+            this.reset.bind(this, this.initial_position.x, this.initial_position.y),
+            2000
+        );
     }
 };

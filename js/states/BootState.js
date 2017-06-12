@@ -16,7 +16,12 @@ Bomberman.BootState.prototype.init = function (level_file, next_state) {
 
 Bomberman.BootState.prototype.preload = function () {
     "use strict";
+    this.load.image('preloadScreen', 'assets/images/Title_screen.png');
     this.load.text("level1", this.level_file);
+
+    this.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
+    this.scale.pageAlignHorizontally = true;
+    this.scale.pageAlignVertically = true;
 };
 
 Bomberman.BootState.prototype.create = function () {

@@ -16,26 +16,26 @@
             "callback": "player1.change_movement",
             "args": [1, 0, true]
         },
-        "Z": {
+        "ONE": {
             "callback": "player1.try_dropping_bomb"
         },
-        "U": {
+        "NUMPAD_8": {
             "callback": "player2.change_movement",
             "args": [0, -1, true]
         },
-        "J": {
+        "NUMPAD_5": {
             "callback": "player2.change_movement",
             "args": [0, 1, true]
         },
-        "H": {
+        "NUMPAD_4": {
             "callback": "player2.change_movement",
             "args": [-1, 0, true]
         },
-        "K": {
+        "NUMPAD_6": {
             "callback": "player2.change_movement",
             "args": [1, 0, true]
         },
-        "N": {
+        "NUMPAD_0": {
             "callback": "player2.try_dropping_bomb"
         }
     },
@@ -56,19 +56,19 @@
             "callback": "player1.change_movement",
             "args": [1, 0, false]
         },
-        "U": {
+        "NUMPAD_8": {
             "callback": "player2.change_movement",
             "args": [0, -1, false]
         },
-        "J": {
+        "NUMPAD_5": {
             "callback": "player2.change_movement",
             "args": [0, 1, false]
         },
-        "H": {
+        "NUMPAD_4": {
             "callback": "player2.change_movement",
             "args": [-1, 0, false]
         },
-        "K": {
+        "NUMPAD_6": {
             "callback": "player2.change_movement",
             "args": [1, 0, false]
         }

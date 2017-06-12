@@ -17,6 +17,9 @@ Bomberman.LoadingState.prototype.init = function (level_data, next_state) {
 Bomberman.LoadingState.prototype.preload = function () {
     "use strict";
     var assets, asset_loader, asset_key, asset;
+
+    this.preloadScreen = this.add.sprite(0, 0, 'preloadScreen');
+
     assets = this.level_data.assets;
     for (asset_key in assets) { // load assets according to asset key
         if (assets.hasOwnProperty(asset_key)) {
@@ -42,5 +45,11 @@ Bomberman.LoadingState.prototype.preload = function () {
 
 Bomberman.LoadingState.prototype.create = function () {
     "use strict";
-    this.game.state.start(this.next_state, true, false, this.level_data);
+    var self = this;
+
+
+    var key = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
+    key.onDown.addOnce(function () {
+        self.game.state.start(self.next_state, true, false, self.level_data);
+    }, this);
 };
