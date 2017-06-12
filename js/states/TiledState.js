@@ -102,22 +102,12 @@ Bomberman.TiledState.prototype.create_object = function (object) {
     if (this.prefab_classes.hasOwnProperty(object.type)) {
         prefab = new this.prefab_classes[object.type](this, object.name, position, object.properties);
     }
+    console.log(object.name);
     this.prefabs[object.name] = prefab;
 };
 
 Bomberman.TiledState.prototype.init_hud = function () {
     "use strict";
-    var player1_lives_position, player1_lives_properties, player1_lives, player2_lives_position, player2_lives_properties, player2_lives;
-    
-    // create the lives prefab for player1
-    player1_lives_position = new Phaser.Point(0.1 * this.game.world.width, 0.07 * this.game.world.height);
-    player1_lives_properties = {group: "hud", texture: "heart_image", number_of_lives: 3, player: "player1"};
-    player1_lives = new Bomberman.Lives(this, "lives", player1_lives_position, player1_lives_properties);
-    
-    // create the lives prefab for player2
-    player2_lives_position = new Phaser.Point(0.9 * this.game.world.width, 0.07 * this.game.world.height);
-    player2_lives_properties = {group: "hud", texture: "heart_image", number_of_lives: 3, player: "player2"};
-    player2_lives = new Bomberman.Lives(this, "lives", player2_lives_position, player2_lives_properties);
 };
 
 Bomberman.TiledState.prototype.show_game_over = function () {
